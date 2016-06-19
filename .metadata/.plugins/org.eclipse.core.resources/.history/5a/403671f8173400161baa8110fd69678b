@@ -1,0 +1,4 @@
+spring.datasource.url=jdbc:mysql:/localhost/new_items
+spring.datasource.username=root
+spring.datasource.password=neWbeg1n1ngs
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver

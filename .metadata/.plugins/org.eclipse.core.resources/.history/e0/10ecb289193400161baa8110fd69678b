@@ -1,0 +1,22 @@
+package com.recursivechaos.gamemanager;
+import com.recursivechaos.gamemanager.domain.Game;
+import com.recursivechaos.gamemanager.repository.GameRepository;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = MysqlJpaDemoApplication.class)
+public class MysqlJpaDemoApplicationTests {
+ @Autowired
+ GameRepository gameRepository;
+ @Test
+ public void testLoadGames() {
+     List<Game> games = (ArrayList<Game>) gameRepository.findAll();
+     assertEquals("Did not get all games", 3, games.size());
+ }
+}

@@ -1,0 +1,40 @@
+package com.myapp;
+import com.myapp.domain.Item;
+import com.myapp.repository.ItemRepository;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = InventoryManaApplication.class)
+public class InventoryManaApplicationTests {
+ @Autowired
+ ItemRepository itemRepository;
+ 
+ @Before
+ 
+ public void setUp() throws Exception {
+  itemRepository.deleteAll();
+  Item pandemic = new Item("Pandemic", "Co-op game for wannabe disease control specailists");
+  Item werewolf = new Item("Werewolf", "You must find out who's secretly the werewolf, before it's too late");
+  Item camelUp = new Item("Camel Up", "A high stakes game of gambling and camel racing");
+  itemRepository.save(pandemic);
+  itemRepository.save(werewolf);
+  itemRepository.save(camelUp);
+ }
+ @Test
+ public void testLoadItem() {
+     List<Item> items = (ArrayList<Item>) itemRepository.findAll();
+     assertEquals("Did not get all items", 3, items.size());
+ }
+ @Test
+ public void testFindItem() throws Exception {
+  List<Item> camelUpList = itemRepository.findByName("Camel Up");
+  assertEquals("Found wrong number of Camel Ups", 1, camelUpList.size());
+  assertEquals("Found wrong name", "Camel Up", camelUpList.get(0).getName());
+ }
+}

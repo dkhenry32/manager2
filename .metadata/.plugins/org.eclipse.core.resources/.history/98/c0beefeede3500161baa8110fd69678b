@@ -1,0 +1,10 @@
+@Before
+public void setUp() throws Exception {
+ ItemRepository.deleteAll();
+ Item pandemic = new Game("Pandemic", "Co-op game for wannabe disease control specailists");
+ Item werewolf = new Game("Werewolf", "You must find out who's secretly the werewolf, before it's too late");
+ Item camelUp = new Game("Camel Up", "A high stakes game of gambling and camel racing");
+ itemRepository.save(pandemic);
+ itemRepository.save(werewolf);
+ itemRepository.save(camelUp);
+}

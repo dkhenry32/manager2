@@ -1,0 +1,6 @@
+package com.recursivechaos.Inventory_mana.repository;
+
+import com.recursivechaos.Inventory_mana.domain.Game;
+import org.springframework.data.repository.CrudRepository;
+
+public interface GameRepository extends CrudRepository<Game, Integer> {
